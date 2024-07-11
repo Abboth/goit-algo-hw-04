@@ -1,8 +1,10 @@
 import re
-from colorama import Fore, Style
+from colorama import Fore, Style, init
+
+init(autoreset=True)
 
 
-def phone_book_parse(user_input: str) -> tuple:
+def phone_book_parse(user_input: str):
     pattern = r"^\+?\d{1,3}?[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$"
     parts = user_input.split()
     cmd = parts[0].strip().lower()
@@ -16,42 +18,43 @@ def phone_book_parse(user_input: str) -> tuple:
 
 def add_contact(name: str, phone: str, contacts: dict):
     contacts[name] = phone
-    print(f"Contact {name} added.")
+    return f"Contact {name} added."
 
 
 def change_contact(name: str, phone: str, contacts: dict):
     if name in contacts:
         contacts[name] = phone
-        print(f"Contact {name} updated")
+        return f"Contact {name} updated"
     else:
-        print("Contact is not found")
+        return "Contact is not found"
 
 
 def show_phone(name: str, contacts: dict):
     if name in contacts:
-        print(f"{name} - {contacts[name]}")
+        return f"{name} - {contacts[name]}"
     else:
-        print("Contact is not found")
+        return "Contact is not found"
 
 
 def show_all(contacts: dict):
     if not contacts:
-        print("No contacts available.")
+        return "No contacts available."
     else:
         for key, value in contacts.items():
-            print(f"{key}: {value}")
+            return f"{key}: {value}"
 
 
 def delete_contact(name: str, contacts: dict):
     if name in contacts:
         del contacts[name]
-        print(f"Contact {name} deleted")
+        return f"Contact {name} deleted"
     else:
-        print(f"{name} is not in your contact list")
+        return f"{name} is not in your contact list"
 
 
 def all_commands(commands_list: dict):
-    for command in commands_list:
-        print(f"{Fore.LIGHTBLUE_EX + Style.BRIGHT+command} - "
-              f"{Fore.LIGHTGREEN_EX + Style.DIM + commands_list[command] 
-                 + Style.RESET_ALL}")
+    # "".join(commands_list)+"\n"
+    # for command in commands_list:
+    #     commands += (f"{Fore.LIGHTBLUE_EX + Style.BRIGHT+command} - "
+    #                  f"{Fore.LIGHTGREEN_EX + Style.DIM + commands_list[command]}\n")
+    return "".join(commands_list)+"\n"

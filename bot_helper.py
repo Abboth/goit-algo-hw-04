@@ -36,13 +36,13 @@ def main():
                     if command == "back":
                         break
                     elif command == "all":
-                        phone_book_module.show_all(contacts)
+                        print(phone_book_module.show_all(contacts))
                     elif command == "show":
-                        phone_book_module.show_phone(name, contacts)
+                        print(phone_book_module.show_phone(name, contacts))
                     elif command == "delete":
-                        phone_book_module.delete_contact(name, contacts)
+                        print(phone_book_module.delete_contact(name, contacts))
                     elif command == "commands":
-                        phone_book_module.all_commands(commands_list)
+                        print(phone_book_module.all_commands(commands_list))
                     else:
                         print(f"{invalid_command}")
 
@@ -51,9 +51,9 @@ def main():
                     pattern = r"^\+?\d{1,3}?[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$"
                     if re.match(pattern, phone):
                         if command == "add":
-                            phone_book_module.add_contact(name, phone, contacts)
+                            print(phone_book_module.add_contact(name, phone, contacts))
                         elif command == "change":
-                            phone_book_module.change_contact(name, phone, contacts)
+                            print(phone_book_module.change_contact(name, phone, contacts))
                 else:
                     print(f"{invalid_command}")
         elif user_input == "calendar":
